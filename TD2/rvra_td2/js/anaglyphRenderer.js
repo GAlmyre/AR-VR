@@ -29,9 +29,9 @@ function AnaglyphRenderer ( renderer ) {
     var leftR = -znear*((1.*(w+ipd)/(2*distanceScreenViewer)));
 
     this.cameraLeft.matrixWorld = viewMatLeft;
-    this.cameraLeft.translateX(1.*(-ipd)/2);
+    this.cameraLeft.matrixWorld.multiply(new THREE.Matrix4().makeTranslation(-ipd/2,0,0));
     this.cameraRight.matrixWorld = viewMatRight;
-    this.cameraRight.translateX(1.*ipd/2);
+    this.cameraRight.matrixWorld.multiply(new THREE.Matrix4().makeTranslation(ipd/2,0,0));
 
 		var projMatLeft = new THREE.Matrix4().makePerspective( leftL, rightL, top, bottom, znear, zfar );
 		var projMatRight = new THREE.Matrix4().makePerspective( leftR, rightR, top, bottom, znear, zfar );
