@@ -1,4 +1,3 @@
-#version 120
 uniform mat4 projectionMatrix2;
 uniform mat4 inverseProjectionMatrix;
 
@@ -12,11 +11,14 @@ uniform sampler2D colorMap;
 uniform sampler2D depthMap;
 uniform vec2 textureSize;
 
+uniform float zfar;
+uniform float znear;
+
 varying vec2 vUv;
 
-// TODO: distance to camera computation
 float distToFrag( float z_buffer ) {
-	float normalizedZ = 2*gl_fragCoord.z-1;
+	float normalizedZ=texture(depthMap,vUv).x;
+	return ((2*zfar*znear)/(zfar-znear))*1/(normalizedZ-((zfar+znear)/(zfar-znear)));
 }
 
 // TODO: circle of confusion computation

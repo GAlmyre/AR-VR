@@ -36,7 +36,9 @@ function DoFRenderer ( renderer ) {
     "projectionMatrix2": { value: new THREE.Matrix4() },
     "focusDistance": { value: 500 },
     "pupilDiameter": { value: 4 },
-    "pixelPitch": { value: displayParameters.pixelPitch() }
+    "pixelPitch": { value: displayParameters.pixelPitch() },
+    "znear": {value: 0},
+    "zfar": {value: 0}
   };
 
   // Load GLSL shaders and assign them to the quad as material
@@ -77,7 +79,8 @@ function DoFRenderer ( renderer ) {
     // Update the shader uniforms matrices
     uniforms.projectionMatrix2.value = camera.projectionMatrix;
     uniforms.inverseProjectionMatrix.value.getInverse( camera.projectionMatrix );
-
+    uniforms.znear.value = camera.near;
+    uniforms.zfar.value = camera.far;
     // 2nd pass: compute adaptive screen-space blur
     renderer.render( this.scene, this.camera );
   }

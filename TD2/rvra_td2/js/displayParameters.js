@@ -21,7 +21,7 @@ var displayParameters = {
   },
 
   screenSize: function() {
-    return new THREE.Vector2(531,299);
+    return new THREE.Vector2(this.screenResolutionWidth*this.aspectRatio*this.pixelPitch(), this.screenResolutionWidth*this.pixelPitch());
   }
 
   // confusion circle : (value in pixels, to multiply by pixelPitch)

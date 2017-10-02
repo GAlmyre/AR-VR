@@ -258,14 +258,14 @@ function render() {
 
   var delta = clock.getDelta();
 
-  velocity.x -= velocity.x * 100.0 * delta;
-  velocity.z -= velocity.z * 100.0 * delta;
+  velocity.x -= velocity.x * 10.0 * delta;
+  velocity.z -= velocity.z * 10.0 * delta;
 
-  if ( moveForward ) velocity.z -= 15000.0 * delta;
-  if ( moveBackward ) velocity.z += 15000.0 * delta;
+  if ( moveForward ) velocity.z -= 1500.0 * delta;
+  if ( moveBackward ) velocity.z += 1500.0 * delta;
 
-  if ( moveLeft ) velocity.x -= 15000.0 * delta;
-  if ( moveRight ) velocity.x += 15000.0 * delta;
+  if ( moveLeft ) velocity.x -= 1500.0 * delta;
+  if ( moveRight ) velocity.x += 1500.0 * delta;
 
   controls.getObject().translateX( velocity.x * delta );
   controls.getObject().translateZ( velocity.z * delta );
@@ -273,8 +273,8 @@ function render() {
   renderer.clear();
 
   //renderer.render( scene, camera );
-  anaglyphRenderer.render(scene, camera);
-  //dofRenderer.render(scene, camera);
+  //anaglyphRenderer.render(scene, camera);
+  dofRenderer.render(scene, camera);
   if(pointerLocked) {
     renderer.clearDepth();
     renderer.render( sceneOrtho, cameraOrtho );
